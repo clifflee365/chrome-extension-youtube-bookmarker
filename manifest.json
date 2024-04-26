@@ -17,6 +17,7 @@
       {
         "resources": [
           "assets/bookmark.png",
+          "assets/icon-plus.svg",
           "assets/play.png",
           "assets/delete.png",
           "assets/save.png"

@@ -1,5 +1,5 @@
 (() => {
-    let youtubeLeftControls, youtubePlayer;
+    let youtubeLeftControls, youtubePlayer, youtubeRightControls;
     let currentVideo = "";
     let currentVideoBookmarks = [];
   
@@ -31,16 +31,25 @@
       currentVideoBookmarks = await fetchBookmarks();
   
       if (!bookmarkBtnExists) {
+        const bookmarkBtnBox = document.createElement("div")
+        bookmarkBtnBox.className = "ytn-button-box"
+        bookmarkBtnBox.style = "width: 48px; height: 100%; display: inline-block; float: right; display: flex;align-items: center; justify-content: center;"
+
         const bookmarkBtn = document.createElement("img");
   
-        bookmarkBtn.src = chrome.runtime.getURL("assets/bookmark.png");
+        // bookmarkBtn.src = chrome.runtime.getURL("assets/bookmark.png");
+        bookmarkBtn.src = chrome.runtime.getURL("assets/icon-plus.svg");
         bookmarkBtn.className = "ytp-button " + "bookmark-btn";
         bookmarkBtn.title = "Click to bookmark current timestamp";
+        bookmarkBtn.style = "width: 24px; height: 24px"
   
-        youtubeLeftControls = document.getElementsByClassName("ytp-left-controls")[0];
+        // youtubeLeftControls = document.getElementsByClassName("ytp-left-controls")[0];
+        youtubeRightControls = document.getElementsByClassName("ytp-right-controls")[0];
         youtubePlayer = document.getElementsByClassName('video-stream')[0];
   
-        youtubeLeftControls.appendChild(bookmarkBtn);
+        // youtubeLeftControls.appendChild(bookmarkBtn);
+        bookmarkBtnBox.appendChild(bookmarkBtn)
+        youtubeRightControls.appendChild(bookmarkBtnBox);
         bookmarkBtn.addEventListener("click", addNewBookmarkEventHandler);
       }
     };
